@@ -1,9 +1,10 @@
 h2 Dina anteckningar
 
-- if session["notes"] && !session["notes"].empty?
-  - session["notes"].each_with_index do |note, index|
-    print = note + "   "
-    <a href="/notes/delete/#{index}" class="button">Delete</a> 
+- if session["notes"] && !session["notes"].empty? #kollar så att session[notes] finns och inte är tom
+  - session["notes"].each_with_index do |note, index| #itererar över varje anteckning och sätter variabeln index till vilket nummer i listan som den just då itererar över
+    print = note + "   " #skriver ut anteckningen plus ett litet mellanrum
+    <a href="/notes/delete/#{index}" class="button">Delete</a>
+    /den här taggen är en delete-knapp (förklaras i mer detalj i mitt dokument)
     br
     br
 - else

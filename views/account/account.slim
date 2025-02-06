@@ -1,0 +1,24 @@
+- if session["user"]
+	.login-body
+		.login-wrapper
+			p du är inloggad!
+- else
+	.login-body
+		.login-wrapper
+			.login-form
+				.login-header
+					img src="img/gangsta fish.png" alt="Your Logo"
+				.form-content
+					form action="/account/login" method="post"
+						label for="username" Ditt användarnamn
+						br
+						input type="text" name="username_login" id="username"
+						br
+						label for="password" Ditt lösenord
+						br
+						input type="password" name="password_login" id="password"
+						br
+						button type="submit" Logga in!
+				.login-footer
+					p lorem
+					a href="#" Har du inget konto?

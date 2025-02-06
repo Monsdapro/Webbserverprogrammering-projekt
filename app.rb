@@ -3,11 +3,11 @@ require 'slim'
 
 enable :sessions
 
-
-
 before do
-  session["password"] = "abc123"
-  session["user"] = "John Smith"
+  session["username_list"] ||= ["a"]
+  session["a"] ||= "a"
+  session["user"] ||= nil
+  puts session["user"]
 end
 
 #Startsida
@@ -51,5 +51,28 @@ get '/notes/delete/:index' do
     redirect '/notes'  #tillbaks till notes-sidan med dig
   else
     redirect '/notes'
+  end
+end
+
+#Login sida
+get '/account' do
+  slim(:"account/account")
+end
+
+#Inloggning
+post '/account/login' do
+  username_list = session["username_list"] || []
+  username_login = params["username_login"]
+  password_login = params["password_login"]
+
+  username_list.each do |username|
+    if username_login == username && password_login == session[username]
+      puts "Login successful"
+      session["user"] = username
+      redirect '/account'
+      break
+    else
+      puts "Invalid username or password"
+    end
   end
 end
